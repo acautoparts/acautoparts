@@ -130,6 +130,17 @@
                 width: 100%;
             }
             }
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Adjust based on your layout */
+                margin-bottom: 20px; /* Spacing between images */
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%; /* Ensure images scale correctly */
+                display: block;
+            }
         </style>
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP0BC3GP6G">
@@ -598,11 +609,15 @@
             for (const [key, value] of Object.entries(images)) {
                 var li = document.createElement("li");
                 var section = document.createElement("section");
-                section.className = "blog-content";
+                section.className = "blog-content image-container";
                 var img = document.createElement("img");
                 img.src = value;
+                img.onload = function() { // Adjust container height once image is loaded
+                    section.style.height = img.naturalHeight + 'px';
+                };
+                img.className = "img-fluid"; // Changed to img-fluid for Bootstrap 4+
+                img.loading = "lazy";
                 img.onclick = function() {showimage(value);};
-                img.className = "img-responsive";
                 var figure = document.createElement("figure");
                 var button = document.createElement("button");
                 button.className = "image-button";
@@ -753,30 +768,15 @@
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
-                img.parentElement.style.height = img.naturalHeight + 'px';
+                img.parentElement.style.height = '0';
+                img.parentElement.style.height = 'auto';
             });
             });
         });
-        // var images = {
-        //             "BharatBenz 24V": "images/blower-motor/blower_motor_bharatbenz_24V.jpg",
-        //             "Superking 24V": "images/blower-motor/blower_motor_superking_24V.jpg",
-        //             "Ritz": "images/blower-motor/blower_motor_ritz.jpg",
-        //             "Figo/ XUV": "images/blower-motor/blower_motor_figo_xuv.jpg",
-        //             "Swift": "images/blower-motor/blower_motor_swift.jpg",
-        //             "Bolero": "images/blower-motor/blower_motor_bolero.jpg",
-        //             "Scorpio/ M-Hawk": "images/blower-motor/blower_motor_scorpio_mhawk.jpg",
-        //             "Micra": "images/blower-motor/blower_motor_micra.jpg",
-        //             "Superking Wheel": "images/blower-motor/blower_motor_superking_wheel.jpg",
-        //             "Innova Front": "images/blower-motor/blower_motor_innova_front.jpg",
-        //             "Innova Rear": "images/blower-motor/blower_motor_innova_rear.jpg",
-        //             "Logan/ Duster": "images/blower-motor/blower_motor_logan_duster.jpg",
-        //             "MHawk Imported": "images/blower-motor/blower_motor_mhawk_imported.jpg",
-        //             "Beat": "images/blower-motor/blower_motor_beat.jpg",
-        //             "Scorpio Old": "images/blower-motor/blower_motor_scorpio_old_model.jpg",
-        //             }
-
-        
 
     </script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

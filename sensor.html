@@ -130,6 +130,17 @@
                 width: 100%;
             }
             }
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Adjust based on your layout */
+                margin-bottom: 20px; /* Spacing between images */
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%; /* Ensure images scale correctly */
+                display: block;
+            }
         </style>
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP0BC3GP6G">
@@ -601,11 +612,15 @@
             for (const [key, value] of Object.entries(images)) {
                 var li = document.createElement("li");
                 var section = document.createElement("section");
-                section.className = "blog-content";
+                section.className = "blog-content image-container";
                 var img = document.createElement("img");
                 img.src = value;
+                img.onload = function() { // Adjust container height once image is loaded
+                    section.style.height = img.naturalHeight + 'px';
+                };
+                img.className = "img-fluid"; // Changed to img-fluid for Bootstrap 4+
+                img.loading = "lazy";
                 img.onclick = function() {showimage(value);};
-                img.className = "img-responsive";
                 var figure = document.createElement("figure");
                 var button = document.createElement("button");
                 button.className = "image-button";
@@ -769,34 +784,15 @@
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
-                img.parentElement.style.height = img.naturalHeight + 'px';
+                img.parentElement.style.height = '0';
+                img.parentElement.style.height = 'auto';
             });
             });
         });
 
-        // var images = {
-        //             "I-20 Ambient Sensor": "images/sensor/ambient_sensor_I20.jpg",
-        //             "Direction Motor MHawk": "images/sensor/direction_motor_mhawk.jpg",
-        //             "Bolero AC Switch": "images/sensor/switch_ac_bolero.jpg",
-        //             "Bolero HP": "images/sensor/switch_bolero.jpg",
-        //             "Ford HP": "images/sensor/switch_ford.jpg",
-        //             "I-20/ Verna HP": "images/sensor/switch_I20_verna.jpg",
-        //             "Indica Vista HP": "images/sensor/switch_indica_vista.jpg",
-        //             "Innova HP": "images/sensor/switch_innova.jpg",
-        //             "Maruti AC Switch": "images/sensor/switch_maruti.jpg",
-        //             "Scoda T2 Switch": "images/sensor/switch_scoda_t2.jpg",
-        //             "Scoda Switch": "images/sensor/switch_scoda.jpg",
-        //             "Tavera Switch": "images/sensor/switch_tavera.jpg",
-        //             "Zen Switch": "images/sensor/switch_zen.jpg",
-        //             "Alto Thermostat": "images/sensor/thermostat_alto.jpg",
-        //             "Creta Thermostat": "images/sensor/thermostat_creta.jpg",
-        //             "I20 Thermostat": "images/sensor/thermostat_I20.jpg",
-        //             "I20 Elite/ Verna Flutec Thermostat": "images/sensor/thermostat_I20elite_verna_flutec.jpg",
-        //             "MHawk Thermostat": "images/sensor/thermostat_mhawk.jpg",
-        //             "Universal Thermostat": "images/sensor/thermostat_universal.jpg",
-        //             }
-
-        
     </script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

@@ -130,6 +130,17 @@
                 width: 100%;
             }
             }
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Adjust based on your layout */
+                margin-bottom: 20px; /* Spacing between images */
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%; /* Ensure images scale correctly */
+                display: block;
+            }
         </style>
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP0BC3GP6G">
@@ -597,12 +608,16 @@
                 for (const [key, value] of Object.entries(images)) {
                     var li = document.createElement("li");
                     var section = document.createElement("section");
-                    section.className = "blog-content";
-                    var img = document.createElement("img");
-                    img.src = value;
-                    img.onclick = function() {showimage(value);};
-                    img.className = "img-responsive";
-                    var figure = document.createElement("figure");
+                    section.className = "blog-content image-container";
+                var img = document.createElement("img");
+                img.src = value;
+                img.onload = function() { // Adjust container height once image is loaded
+                    section.style.height = img.naturalHeight + 'px';
+                };
+                img.className = "img-fluid"; // Changed to img-fluid for Bootstrap 4+
+                img.loading = "lazy";
+                img.onclick = function() {showimage(value);};
+                var figure = document.createElement("figure");
                     var button = document.createElement("button");
                     button.className = "image-button";
                     button.innerHTML = "Get Price";
@@ -752,29 +767,15 @@
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
-                img.parentElement.style.height = img.naturalHeight + 'px';
+                img.parentElement.style.height = '0';
+                img.parentElement.style.height = 'auto';
             });
             });
         });
 
-        // var images = {
-        //             "Swift/ Innova/ Alto": "images/expansion-valve/expansion_swift_innova_alto.jpg",
-        //             "I-20": "images/expansion-valve/expansion_I20.jpg",
-        //             "Ritz": "images/expansion-valve/expansion_ritz.jpg",
-        //             "Etios": "images/expansion-valve/expansion_etios.jpg",
-        //             "Flare": "images/expansion-valve/expansion_flare.jpg",
-        //             "R134/ R12": "images/expansion-valve/expansion_r134_r12.jpg",
-        //             "Tempo Traveller": "images/expansion-valve/expansion_tempo_traveller.jpg",
-        //             "MHawk": "images/expansion-valve/expansion_mhawk.jpg",
-        //             "Scoda Octavia": "images/expansion-valve/expansion_scoda_octavia.jpg",
-        //             "Polo/ Vento": "images/expansion-valve/expansion_polo_vento.jpg",
-        //             "Accent": "images/expansion-valve/expansion_accent.jpg",
-        //             "Indica Behr": "images/expansion-valve/expansion_indica_behr.jpg",
-        //             "Indica Vista": "images/expansion-valve/expansion_indica_vista.jpg",
-        //             "Optra": "images/expansion-valve/expansion_optra.jpg",
-        //             }
-
-        
     </script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

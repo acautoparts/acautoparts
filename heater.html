@@ -130,6 +130,17 @@
                 width: 100%;
             }
             }
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Adjust based on your layout */
+                margin-bottom: 20px; /* Spacing between images */
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%; /* Ensure images scale correctly */
+                display: block;
+            }
         </style>
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP0BC3GP6G">
@@ -598,11 +609,15 @@
             for (const [key, value] of Object.entries(images)) {
                 var li = document.createElement("li");
                 var section = document.createElement("section");
-                section.className = "blog-content";
+                section.className = "blog-content image-container";
                 var img = document.createElement("img");
                 img.src = value;
+                img.onload = function() { // Adjust container height once image is loaded
+                    section.style.height = img.naturalHeight + 'px';
+                };
+                img.className = "img-fluid"; // Changed to img-fluid for Bootstrap 4+
+                img.loading = "lazy";
                 img.onclick = function() {showimage(value);};
-                img.className = "img-responsive";
                 var figure = document.createElement("figure");
                 var button = document.createElement("button");
                 button.className = "image-button";
@@ -753,28 +768,15 @@
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
-                img.parentElement.style.height = img.naturalHeight + 'px';
+                img.parentElement.style.height = '0';
+                img.parentElement.style.height = 'auto';
             });
             });
         });
 
-        // var images = {
-        //             "Swift": "images/heater/heater_swift.jpg",
-        //             "Swift New Model": "images/heater/heater_swift_new_model.jpg",
-        //             "Universal": "images/heater/heater_universal.jpg",
-        //             "Alto/ Wagnor": "images/heater/heater_alto_wagnor.jpg",
-        //             "Alto K-10": "images/heater/heater_alto_k10.jpg",
-        //             "Bolero Old Model": "images/heater/heater_bolero_old_model.jpg",
-        //             "Bolero New Model": "images/heater/heater_bolero_new_model.jpg",
-        //             "I-20 Elite": "images/heater/heater_i20_elite.jpg",
-        //             "I-20": "images/heater/heater_i20.jpg",
-        //             "Verna Flutec": "images/heater/heater_verna_flutec.jpg",
-        //             "Innova/ Fortuner": "images/heater/heater_innova_fortuner.jpg",
-        //             "Ritz": "images/heater/heater_ritz.jpg",
-        //             "Wagnor K-10": "images/heater/heater_wagnor_k10.jpg",
-        //             }
-
-        
     </script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

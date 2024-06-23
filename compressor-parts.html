@@ -130,6 +130,17 @@
                 width: 100%;
             }
             }
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Adjust based on your layout */
+                margin-bottom: 20px; /* Spacing between images */
+                overflow: hidden;
+            }
+
+            img {
+                width: 100%; /* Ensure images scale correctly */
+                display: block;
+            }
         </style>
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP0BC3GP6G">
@@ -608,11 +619,15 @@
             for (const [key, value] of Object.entries(images)) {
                 var li = document.createElement("li");
                 var section = document.createElement("section");
-                section.className = "blog-content";
+                section.className = "blog-content image-container";
                 var img = document.createElement("img");
                 img.src = value;
+                img.onload = function() { // Adjust container height once image is loaded
+                    section.style.height = img.naturalHeight + 'px';
+                };
+                img.className = "img-fluid"; // Changed to img-fluid for Bootstrap 4+
+                img.loading = "lazy";
                 img.onclick = function() {showimage(value);};
-                img.className = "img-responsive";
                 var figure = document.createElement("figure");
                 var button = document.createElement("button");
                 button.className = "image-button";
@@ -763,42 +778,15 @@
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
-                img.parentElement.style.height = img.naturalHeight + 'px';
+                img.parentElement.style.height = '0';
+                img.parentElement.style.height = 'auto';
             });
             });
         });
 
-        // var images = {
-        //               "507 12v": "images/magnet-coil/magnet_507_12V.jpg",
-        //               "508 24v": "images/magnet-coil/magnet_508_24V.jpg",
-        //               "508": "images/magnet-coil/magnet_508.jpg",
-        //               "alto": "images/magnet-coil/magnet_alto.jpg",
-        //               "beat": "images/magnet-coil/magnet_beat.jpg",
-        //               "bolero 24v": "images/magnet-coil/magnet_bolero_24v.jpg",
-        //               "ecosport": "images/magnet-coil/magnet_ecosport.jpg",
-        //               "etios": "images/magnet-coil/magnet_etios.jpg",
-        //               "figo": "images/magnet-coil/magnet_figo.jpg",
-        //               "honda city 4": "images/magnet-coil/magnet_hc4.jpg",
-        //               "honda city 3": "images/magnet-coil/magnet_honda_3.jpg",
-        //               "i-20 dsl": "images/magnet-coil/magnet_i20_dsl.jpg",
-        //               "innova double ac": "images/magnet-coil/magnet_innova_double.jpg",
-        //               "logan": "images/magnet-coil/magnet_logan.jpg",
-        //               "qualis": "images/magnet-coil/magnet_qualis.jpg",
-        //               "santro xing": "images/magnet-coil/magnet_santro_xing.jpg",
-        //               "santro": "images/magnet-coil/magnet_santro.jpg",
-        //               "scorpio": "images/magnet-coil/magnet_scorpio.jpg",
-        //               "skoda": "images/magnet-coil/magnet_skoda.jpg",
-        //               "swift dsl": "images/magnet-coil/magnet_swift_dsl.jpg",
-        //               "swift ptl": "images/magnet-coil/magnet_swift_ptl.jpg",
-        //               "verna": "images/magnet-coil/magnet_verna.jpg",
-        //               "wagnor": "images/magnet-coil/magnet_wagnor.jpg",
-        //               "xuv": "images/magnet-coil/magnet_xuv.jpg",
-        //               "zen_delphi": "images/magnet-coil/magnet_zen_delphi.jpg",
-        //               "zen": "images/magnet-coil/magnet_zen.jpg",
-        //               }
-
-        
-
     </script>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
