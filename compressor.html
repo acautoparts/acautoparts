@@ -646,15 +646,19 @@
                       "508 universal": "images/compressor/compressor_508_universal.jpg",
                       }
 
-                      function addContent() {
+        function addContent() {
             for (const [key, value] of Object.entries(images)) {
                 var li = document.createElement("li");
                 var section = document.createElement("section");
                 section.className = "blog-content";
+                var img = document.createElement("img");
+                img.src = value;
+                img.onclick = function() {showimage(value);};
+                img.className = "img-responsive";
+                var figure = document.createElement("figure");
                 var button = document.createElement("button");
                 button.className = "image-button";
                 button.innerHTML = "Get Price";
-
                 button.onclick = function() {
                                             sendMessage(key + " Compressor");
                                         };
@@ -664,7 +668,6 @@
                 button2.onclick = function() {
                                             addToCart(key, 5000);
                 };
-
                 // add button around link
                 var linkButton = document.createElement("button");
                 linkButton.className = "image-link"
@@ -677,11 +680,6 @@
                                                     url: window.location.href + "#" + encodeURIComponent(key),
                                                 })};
                 linkButton.appendChild(imgLink);
-                var img = document.createElement("img");
-                img.src = value;
-                img.onclick = function() {showimage(value);};
-                img.className = "img-responsive";
-                var figure = document.createElement("figure");
                 figure.id = encodeURIComponent(key);
                 figure.appendChild(linkButton);
                 figure.appendChild(button);
@@ -793,12 +791,8 @@
         function sendMessage(value) {
             window.open("https://wa.me/916239444069?text=I%20want%20to%20know%20price%20for%20"+ encodeURIComponent(value));
         }
-
-        }
-            console.error('Error:', error);
-        }
-
-        );
+            }
+        });
 
         function displayDocuments(docsDict) {
             // Display the documents in the DOM here
