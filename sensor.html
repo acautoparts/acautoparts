@@ -763,6 +763,17 @@
             .then(data => console.log(data))
         }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            images.forEach(img => {
+            img.addEventListener('load', function() {
+                // Code to adjust the layout
+                img.parentElement.style.height = img.naturalHeight + 'px';
+            });
+            });
+        });
+
         // var images = {
         //             "I-20 Ambient Sensor": "images/sensor/ambient_sensor_I20.jpg",
         //             "Direction Motor MHawk": "images/sensor/direction_motor_mhawk.jpg",

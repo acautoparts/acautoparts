@@ -756,6 +756,18 @@
             // Display the documents in the DOM here
             console.log(docsDict); // for example, log them to the console
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            images.forEach(img => {
+            img.addEventListener('load', function() {
+                // Code to adjust the layout
+                img.parentElement.style.height = img.naturalHeight + 'px';
+            });
+            });
+        });
+
         // var images = {
         //               "507 12v": "images/magnet-coil/magnet_507_12V.jpg",
         //               "508 24v": "images/magnet-coil/magnet_508_24V.jpg",

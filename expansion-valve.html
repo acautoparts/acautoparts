@@ -746,6 +746,17 @@
             console.log(docsDict); // for example, log them to the console
         }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            images.forEach(img => {
+            img.addEventListener('load', function() {
+                // Code to adjust the layout
+                img.parentElement.style.height = img.naturalHeight + 'px';
+            });
+            });
+        });
+
         // var images = {
         //             "Swift/ Innova/ Alto": "images/expansion-valve/expansion_swift_innova_alto.jpg",
         //             "I-20": "images/expansion-valve/expansion_I20.jpg",
