@@ -755,15 +755,44 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             const images = document.querySelectorAll('img[loading="lazy"]');
-            
             images.forEach(img => {
             img.addEventListener('load', function() {
                 // Code to adjust the layout
                 img.parentElement.style.height = '0';
                 img.parentElement.style.height = 'auto';
+                
             });
             });
+            handlePageRefresh();
         });
+
+        function checkRefreshNeeded() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const refreshParam = urlParams.get('refresh');
+
+            // Check the value of the refresh parameter
+            if (refreshParam !== null && refreshParam.toLowerCase() === 'false') {
+                // Return false if refresh is explicitly set to false
+                return false;
+            } else {
+                // Return true (or perform additional checks) if refresh is needed
+                return true;
+            }
+        }
+
+        function handlePageRefresh() {
+            if (checkRefreshNeeded()) {
+                // Get current URL and add query parameter
+                let currentUrl = new URL(window.location.href);
+                currentUrl.searchParams.set('refresh', 'false'); // Set your flag value here
+
+                // Reload the page with updated URL
+                window.location.href = currentUrl.href;
+            } else {
+                console.log('Refresh skipped based on URL parameter.');
+                // Optionally, handle what to do if refresh is not needed
+            }
+        }
 
     </script>
 
