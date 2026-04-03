@@ -53,195 +53,182 @@
         <style>
             /* The Modal (background) */
             .modal {
-            display: none; /* Hidden by default */
+            display: none !important; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 2; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+            z-index: 1000; /* Sit on top */
+            padding-top: 0; /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(226, 224, 224); /* Fallback color */
-            background-color: rgba(255, 255, 255, 0.9); /* Black w/ opacity */
+            background-color: rgba(26, 37, 53, 0.95); /* Dark background */
+            align-items: center;
+            justify-content: center;
+            }
+
+            .modal.show {
+            display: flex !important;
             }
 
             /* Modal Content (image) */
             .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            animation-name: zoomIn;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-out;
             }
 
             /* Caption of Modal Image */
             #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            height: 150px;
+            display: none;
             }
 
             /* Add Animation */
-            .modal-content, #caption {
-            -webkit-animation-name: zoom;
-            -webkit-animation-duration: 0.6s;
-            animation-name: zoom;
-            animation-duration: 0.6s;
+            @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
             }
-
-            @-webkit-keyframes zoom {
-            from {-webkit-transform:scale(0)}
-            to {-webkit-transform:scale(1)}
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
-
-            @keyframes zoom {
-            from {transform:scale(0)}
-            to {transform:scale(1)}
             }
 
             /* The Close Button */
             .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
+            position: fixed;
+            top: 20px;
+            right: 30px;
             height: 50px;
             width: 50px;
-            color: black;
-            font-size: 70px;
+            background-color: #fb5353;
+            color: white;
+            font-size: 36px;
             font-weight: bold;
-            /* transition: 0.3s; */
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1001;
+            line-height: 1;
+            padding: 0;
             }
 
             .close:hover,
             .close:focus {
-            color: black;
+            background-color: #e03c3c;
+            transform: scale(1.1);
             text-decoration: none;
-            cursor: pointer;
             }
 
             /* 100% Image Width on Smaller Screens */
             @media only screen and (max-width: 700px){
             .modal-content {
-                width: 100%;
+                max-width: 95vw;
+                max-height: 80vh;
+            }
+            .close {
+                height: 45px;
+                width: 45px;
+                font-size: 30px;
+                top: 15px;
+                right: 15px;
             }
             }
         </style>
 	</head>
-    <body>
+    <body id="body">
 
-
-        <div style="height: 100%; width: 100%;">
-
-            <!-- header -->
-
-            <div style="height: 10vh; position: fixed; z-index: 200; top: 0; width: 100%; background: whitesmoke;">
-
-                <header role="header">
-
-                    <div class="container">
-
-                        <!-- logo -->
-
-                            <h1>
-
-                                <a href="index.html" title="Car ac parts"><img src="images/logo.png" title="Car ac parts" title="Car ac parts"/></a>
-
-                            </h1>
-
-                            <a href="index.html" title="Car ac parts">
-                            <div style="font-size: 20px; font-weight: 600; color: darkslategray;">
-                                GO TO HOME
-                            </div>
-                            </a>
-
-                        <!-- logo -->
-
-                        <!-- nav -->
-
-                        <nav role="header-nav" class="navy">
-
-                            <ul>
-
-                                <li class="nav-active"><a href="index.html" title="Home">Home</a></li>
-
-                                <li><a href="electric-ac.html" title="Electric AC">Electric AC</a></li>
-
-                                <li><a href="universal-coils.html" title="Electric AC">Universal Coils</a></li>
-
-                                <li><a href="compressor.html" title="Compressors">Compressors</a></li>
-
-                                <li><a href="refurnished.html" title="R Compressors">R. Compressors</a></li>
-
-                                <li><a href="cooling-coil.html" title="Cooling Coil">Cooling Coil</a></li>
-
-                                <li><a href="condenser.html" title="Condenser">Condenser</a></li>
-
-                                <li><a href="blower-motor.html" title="Blower Motor">Blower Motor</a></li>
-
-                                <li><a href="control-valve.html" title="Control Valve">Control Valve</a></li>
-
-                                <li><a href="expansion-valve.html" title="Expansion Valve">Expansion Valve</a></li>
-
-                                <li><a href="heater.html" title="Heater">Heater</a></li>
-
-                                <!-- <li><a href="cabin-filter.html" title="Cabin Filter">Cabin Filter</a></li>
-
-                                <li><a href="fan-motor.html" title="Compressors">Fan Motor</a></li> -->
-
-                                <li><a href="compressor-parts.html" title="Compressor Parts">Compressor Parts</a></li>
-
-                                <li><a href="sensor.html" title="Switch/ Sensor">Switch/ Sensor</a></li>
-
-                                <li><a href="misc.html" title="Misc">Misc</a></li>
-
-                                <li><a href="contact.html" title="Contact">Contact</a></li>
-
-                            </ul>
-
-                        </nav>
-
-                        <!-- nav -->
-
+    <div style="height: 100%; width: 100%;">
+        <!-- header -->
+        <header class="site-header">
+            <!-- Top bar -->
+            <div class="header-topbar">
+                <div class="container header-topbar-inner">
+                    <span>Car AC Spare Parts | Fast Delivery Across India</span>
+                    <div class="topbar-links">
+                        <a href="tel:+919814723517">&#128222; +91 98147 23517</a>
+                        <a href="https://wa.me/916239444069" class="topbar-wa">&#128172; WhatsApp</a>
                     </div>
-
-                </header>
+                </div>
             </div>
-
-            <!-- header -->
+            <!-- Main header: logo + brand -->
+            <div class="header-main">
+                <div class="container header-main-inner">
+                    <a href="index.html" class="header-logo-wrap">
+                        <img src="images/logo.png" alt="Shree Balaji Spareparts"/>
+                        <div class="header-brand-text">
+                            <span class="header-brand-name">SHREE BALAJI SPAREPARTS</span>
+                            <span class="header-brand-sub">Car AC Parts Dealer • Kotkapura, Punjab</span>
+                            <span class="header-brand-badge">Genuine Parts Dealer</span>
+                        </div>
+                    </a>
+                    <div class="header-contact-btns">
+                        <a href="tel:+919814723517" class="hdr-btn hdr-btn--outline">
+                            <img src="images/call-logo.jpeg" alt="call"/> Call Us
+                        </a>
+                        <a href="https://wa.me/916239444069" class="hdr-btn hdr-btn--green">
+                            <img src="images/whatsapp-logo.svg" alt="whatsapp"/> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Nav bar -->
+            <nav class="header-navbar">
+                <div class="container header-navbar-inner">
+                    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="index.html"><span class="nav-icon">🏠</span><span>Home</span></a></li>
+                        <li><a href="electric-ac.html"><span class="nav-icon">⚡</span><span>Electric AC</span></a></li>
+                        <li><a href="universal-coils.html"><span class="nav-icon">🌀</span><span>Universal Coils</span></a></li>
+                        <li><a href="compressor.html"><span class="nav-icon">⚙️</span><span>Compressors</span></a></li>
+                        <li><a href="refurnished.html"><span class="nav-icon">♻️</span><span>R. Compressors</span></a></li>
+                        <li class="nav-active"><a href="cooling-coil.html"><span class="nav-icon">❄️</span><span>Cooling Coil</span></a></li>
+                        <li><a href="condenser.html"><span class="nav-icon">🔧</span><span>Condenser</span></a></li>
+                        <li><a href="blower-motor.html"><span class="nav-icon">💨</span><span>Blower Motor</span></a></li>
+                        <li><a href="control-valve.html"><span class="nav-icon">🎚️</span><span>Control Valve</span></a></li>
+                        <li><a href="expansion-valve.html"><span class="nav-icon">🔌</span><span>Expansion Valve</span></a></li>
+                        <li><a href="heater.html"><span class="nav-icon">🔥</span><span>Heater</span></a></li>
+                        <li><a href="compressor-parts.html"><span class="nav-icon">🔩</span><span>Compressor Parts</span></a></li>
+                        <li><a href="sensor.html"><span class="nav-icon">📡</span><span>Switch/Sensor</span></a></li>
+                        <li><a href="misc.html"><span class="nav-icon">📦</span><span>Misc</span></a></li>
+                        <li><a href="contact.html"><span class="nav-icon">📞</span><span>Contact</span></a></li>
+                    </ul>
+                    <div class="navbar-tagline">India's No. 1 Electric AC supplier</div>
+                </div>
+            </nav>
+        </header>
+        <!-- header spacer -->
+        <div class="header-spacer"></div>
 
                 <!-- main -->
-                <main role="main-inner-wrapper" class="container" style="margin-top: 7vh">
+                <main role="main-home-wrapper" class="container" style="padding-top: 50px; padding-bottom: 80px;">
 
+                    <div class="row">
 
-
-                    <div class="row" style="margin: auto;">
-
-
-
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 ">
-
-                            <article role="pge-title-content" class="blog-header padding-bottom">
-
-                                <header>
-
-                                    <h2><span class="font-size-35">Cooling Coil</span></h2>
-
-                                </header>
-
-                            </article>
-
-                            <div style="width: 100%;padding-bottom: 20px;padding-top: 5px; display: flex;">
-                                <input type="text" id="search-text" style="border-radius: 10px; width: 80%; height: 30px; border: 2px solid gray;">
-                                <img src="images/cross-icon.png" style="width: 20%; height: 30px;width: 30px;padding-left: 5px;" onclick="clearText()">
-                            </div>
-                            <ul style="height: auto;justify-content:center; width: 100%;" id="grid"></ul>
-
+                        <!-- Section Heading -->
+                        <div class="section-heading">
+                            <h2 class="section-title">Cooling Coil</h2>
+                            <p class="section-sub">Cooling coils and evaporators for all car AC systems</p>
                         </div>
+
+                        <!-- Search Bar -->
+                        <div style="width: 100%; padding-bottom: 20px; padding-top: 5px; display: flex; margin-bottom: 20px;">
+                            <input type="text" id="search-text" style="border-radius: 10px; width: 80%; height: 40px; border: 2px solid gray; font-family: 'Open Sans', sans-serif; padding: 0 10px;">
+                            <img src="images/cross-icon.png" style="width: 30px; height: 40px; padding-left: 5px; cursor: pointer;" onclick="clearText()">
+                        </div>
+
+                        <!-- Products Grid -->
+                        <ul style="width: 100%;" id="grid"></ul>
 
                     </div>
 
@@ -341,25 +328,25 @@
                     <p class="copy-right">&copy; 2024 Shree Balaji Spareparts.. All rights Reserved</p>
 
                 </footer>
-                <div style="height: 8vh; position: fixed; bottom: 0;padding: 5px; width: 100%;">
-                    <div class="container full-size" style="display: flex;">
-                        <div class="call-box">
-                            <a href="tel:+916239444069" title="call"><img src="images/call-logo.jpeg" style="height: 50px; width: 50px;" title="call" alt="call"/></a>
-                        </div>
-                        <div class="whatsapp-box">
-                            <a href="https://wa.me/916239444069" title="whatsapp"><img src="images/whatsapp-logo.svg" style="height: 50px; width: 50px;color: green;" title="whatsapp" alt="whatsapp"/></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="bottom-action-bar">
+            <div class="bottom-action-bar-inner">
+                <a href="tel:+916239444069" class="bottom-call-btn">
+                    <img src="images/call-logo.jpeg" alt="Call"/> Call Us
+                </a>
+                <a href="https://wa.me/916239444069" class="bottom-wa-btn">
+                    <img src="images/whatsapp-logo.svg" alt="WhatsApp"/> WhatsApp
+                </a>
+            </div>
+        </div>
 
                 <!-- footer -->
 
         </div>
 
         <!-- The Modal -->
-        <div id="myModal" class="modal" style="margin-top: 10vh">
-            <span class="close" style="color: gray; opacity: 0.8;">&times;</span>
-            <img class="modal-content" id="img01" style="width: 150%;">
+        <div id="myModal" class="modal">
+            <button class="close" title="Close (ESC key)">&times;</button>
+            <img class="modal-content" id="img01">
             <div id="caption"></div>
         </div>
 
@@ -376,6 +363,52 @@
 		<script src="js/nav.js" type="text/javascript"></script>
 
         <script src="js/custom.js" type="text/javascript"></script>
+
+        <script>
+            // Mobile nav toggle with enhanced interactions
+            (function () {
+                var btn = document.getElementById('navHamburger');
+                var nav = document.getElementById('navLinks');
+
+                if (btn && nav) {
+                    btn.addEventListener('click', function () {
+                        var open = nav.classList.toggle('nav-open');
+                        btn.classList.toggle('nav-hamburger--open', open);
+                    });
+
+                    // Close menu when clicking a link
+                    var links = nav.querySelectorAll('a');
+                    links.forEach(function(link) {
+                        link.addEventListener('click', function() {
+                            nav.classList.remove('nav-open');
+                            btn.classList.remove('nav-hamburger--open');
+                        });
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function(event) {
+                        if (nav.classList.contains('nav-open') &&
+                            !nav.contains(event.target) &&
+                            !btn.contains(event.target)) {
+                            nav.classList.remove('nav-open');
+                            btn.classList.remove('nav-hamburger--open');
+                        }
+                    });
+
+                    // Subtle mouse position tracking for radial gradient effect
+                    var items = nav.querySelectorAll('li a');
+                    items.forEach(function(item) {
+                        item.addEventListener('mousemove', function(e) {
+                            var rect = this.getBoundingClientRect();
+                            var x = ((e.clientX - rect.left) / rect.width) * 100;
+                            var y = ((e.clientY - rect.top) / rect.height) * 100;
+                            this.style.setProperty('--mouse-x', x + '%');
+                            this.style.setProperty('--mouse-y', y + '%');
+                        });
+                    });
+                }
+            })();
+        </script>
 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
 
@@ -680,10 +713,10 @@
                                                 })};
                 linkButton.appendChild(imgLink);
                 figure.id = encodeURIComponent(key);
+                figure.appendChild(img);
                 figure.appendChild(linkButton);
                 figure.appendChild(button);
                 //figure.appendChild(button2);
-                figure.appendChild(img);
                 var article = document.createElement("article");
                 article.innerHTML = key.toUpperCase() + " Cooling Coil";
                 section.appendChild(figure);
@@ -749,10 +782,10 @@
                                                         })};
                         linkButton.appendChild(imgLink);
                         figure.id = encodeURIComponent(key);
+                        figure.appendChild(img);
                         figure.appendChild(linkButton);
                         figure.appendChild(button);
                         //figure.appendChild(button2);
-                        figure.appendChild(img);
                         var article = document.createElement("article");
                         article.innerHTML = key.toUpperCase() + " Cooling Coil";
                         section.appendChild(figure);
@@ -774,18 +807,47 @@
             addContent();
         }
 
+        function closeModal() {
+            var model = document.getElementById("myModal");
+            model.classList.remove("show");
+        }
+
         function showimage(src) {
             var model = document.getElementById("myModal");
             var modelimg = document.getElementById("img01");
-            model.style.display = "block";
             modelimg.src = src;
-            console.log(`"background-image","url('${src}')"` + src);
-            model.addEventListener("dblclick", function() { model.style.display = "none"; });
-            var span = document.getElementsByClassName("close")[0];
-            span.onclick = function() {
-                model.style.display = "none";
-            }
+            model.classList.add("show");
         }
+
+        // Setup modal close handlers once on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            var closeBtn = document.querySelector(".close");
+            var modal = document.getElementById("myModal");
+
+            // Close on close button click
+            if (closeBtn) {
+                closeBtn.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    closeModal();
+                });
+            }
+
+            // Close on ESC key
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape" && modal.classList.contains("show")) {
+                    closeModal();
+                }
+            });
+
+            // Close on background click
+            if (modal) {
+                modal.addEventListener("click", function(e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+        });
 
         function sendMessage(value) {
             window.open("https://wa.me/916239444069?text=I%20want%20to%20know%20price%20for%20"+ encodeURIComponent(value));
